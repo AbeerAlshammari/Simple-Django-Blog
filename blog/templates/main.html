@@ -1,0 +1,33 @@
+{% extends 'master.html' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+
+<h2>Welcome to My Blog</h2>
+
+<p>Welcome to our Simple Django Blog Website!</p>
+
+<h3>Explore Our Website</h3>
+
+<ul>
+    <li><a href="{% url 'users' %}">View Users</a></li>
+    <li><a href="{% url 'blogs' %}">View Blog Posts</a></li>
+    <li><a href="{% url 'comments' %}">View Comments</a></li>
+    <li><a href="{% url 'categories' %}">View Categories</a></li>
+    <li><a href="{% url 'login' %}">Login</a></li>
+</ul>
+
+<h3>Latest Blog Posts</h3>
+
+{% for post in posts %}
+    <p>
+        <a href="{% url 'blog_details' post.id %}">
+            {{ post.title }}
+        </a>
+    </p>
+{% empty %}
+    <p>No posts available.</p>
+{% endfor %}
+
+{% endblock %}
